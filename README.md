@@ -1,0 +1,2 @@
+# Steam_KeywordBlocker
+根据关键词屏蔽部分社区推荐内容
