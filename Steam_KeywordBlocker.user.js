@@ -6,6 +6,7 @@
 // @match        http*://store.steampowered.com/
 // @match        http*://store.steampowered.com/labs/trendingreviews/*
 // @match        http*://store.steampowered.com/app/*
+// @match        http*://steamcommunity.com/*
 // @run-at       document-body
 // ==/UserScript==
 
@@ -33,7 +34,16 @@
         return interval_id
     }
 
-    if (window.location.pathname=='/') {
+    function removeElementsByBlacklist(eles) {
+        for (let idx=eles.length-1;idx>=0;idx-=1) {
+            if (containWordInList(eles[idx].innerHTML)) {
+                eles[idx].remove()
+            }
+        }
+    }
+
+    if (/store\.steampowered\.com\/?$/.test(window.location)) {
+        // exmple: https://store.steampowered.com/
         setIntervalKiller(()=>{
             let apps = document.getElementsByClassName('community_recommendation_app')
             if (apps.length>0){
@@ -57,23 +67,26 @@
             }
 
         },500,true);
-    } else if (window.location.pathname.includes('/labs/trendingreviews')) {
+    } else if (/store\.steampowered\.com\/labs\/trendingreviews/.test(window.location)) {
+        // exmple: https://store.steampowered.com/labs/trendingreviews/
         setIntervalKiller(()=>{
             let apps = document.getElementById('reviewed_apps').children
-            for (let idx=apps.length-1;idx>=0;idx-=1) {
-                if (containWordInList(apps[idx].innerHTML)) {
-                    apps[idx].remove()
-                }
-            }
+            removeElementsByBlacklist(apps)
         },500)
-    } else if (window.location.pathname.indexOf('/app')==0) {
+    } else if (/store\.steampowered\.com\/app/.test(window.location)) {
+        // exmple: https://store.steampowered.com/app/440
         setIntervalKiller(()=>{
             let reviews = document.getElementsByClassName('review_box')
-            for (let idx=reviews.length-1;idx>=0;idx-=1) {
-                if (containWordInList(reviews[idx].innerHTML)) {
-                    reviews[idx].remove()
-                }
-            }
+            removeElementsByBlacklist(reviews)
         },500,true)
+    } else if (/steamcommunity\.com/.test(window.location)) {
+        // exmple: https://steamcommunity.com/app/440
+        // exmple: https://steamcommunity.com/app/440/reviews/
+        // exmple: https://steamcommunity.com/
+        // exmple: https://steamcommunity.com/?subsection=reviews
+        setIntervalKiller(()=>{
+            let cards = document.getElementsByClassName('apphub_Card')
+            removeElementsByBlacklist(cards)
+        },500)
     }
 })();
