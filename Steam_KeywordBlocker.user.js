@@ -4,9 +4,9 @@
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/
-// @match        http*://store.steampowered.com/labs/trendingreviews/*
+// @match        http*://store.steampowered.com/labs/trendingreviews*
 // @match        http*://store.steampowered.com/app/*
-// @match        http*://steamcommunity.com/*
+// @match        http*://steamcommunity.com*
 // @run-at       document-body
 // ==/UserScript==
 
