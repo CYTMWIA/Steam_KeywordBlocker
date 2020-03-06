@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.3.6.0
+// @version      2020.3.6.1
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -12,7 +12,7 @@
     'use strict';
 
     //屏蔽关键词 keyword
-let BLACKLIST = ['PUBG社区管理','绝地求生','FREE SKINS',/懂.*?懂.*?身体.*?删.*?除/];
+    let BLACKLIST = ['PUBG社区管理','绝地求生','FREE SKINS',/懂.*?懂.*?身体.*?删.*?除/];
 
     function containWordInList(s,lst=BLACKLIST){
         for (let i=0;i<lst.length;i+=1){
