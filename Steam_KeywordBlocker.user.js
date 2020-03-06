@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.3.6.2
+// @version      2020.3.6.3
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -38,11 +38,14 @@
     }
 
     function removeElementsByBlacklist(eles) {
+        let count = 0
         for (let idx=eles.length-1;idx>=0;idx-=1) {
             if (containWordInList(eles[idx].innerHTML)) {
                 eles[idx].remove()
+                count += 1
             }
         }
+        return count
     }
 
     if (/store\.steampowered\.com\/?$/.test(window.location)) {
@@ -80,7 +83,8 @@
         // exmple: https://store.steampowered.com/app/440
         setIntervalKiller(()=>{
             let reviews = document.getElementsByClassName('review_box')
-            removeElementsByBlacklist(reviews)
+            if (removeElementsByBlacklist(reviews)>0)
+                return true
         },500,true)
     } else if (/steamcommunity\.com/.test(window.location)) {
         // exmple: https://steamcommunity.com/app/440
