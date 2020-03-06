@@ -9,6 +9,7 @@
 关键词的类型目前支持：字符串、正则表达式<br>
 目前脚本自带了常见的、关于以下内容的关键词：
 * 吃鸡广告
+* 饰品广告
 * 黄网广告
 
 ---
@@ -18,3 +19,7 @@
 * 社区推荐，如：https://store.steampowered.com/labs/trendingreviews/
 * 游戏商店页面下的评测，如：https://store.steampowered.com/app/440
 * Steam社区的瀑布流内容，如：https://steamcommunity.com/
+
+---
+
+2020.3.6
