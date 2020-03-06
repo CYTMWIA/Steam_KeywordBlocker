@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.3.5.4
+// @version      2020.3.6.0
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -12,12 +12,16 @@
     'use strict';
 
     //屏蔽关键词 keyword
-    let BLACKLIST = ['PUBG社区管理','绝地求生','FREE SKINS'];
+let BLACKLIST = ['PUBG社区管理','绝地求生','FREE SKINS',/懂.*?懂.*?身体.*?删.*?除/];
 
     function containWordInList(s,lst=BLACKLIST){
         for (let i=0;i<lst.length;i+=1){
-            if (s.indexOf(lst[i])!=-1){
-                return true
+            if (lst[i] instanceof RegExp) {
+                if (lst[i].test(s))
+                    return true
+            } else {
+                if (s.indexOf(lst[i])!=-1) 
+                    return true
             }
         }
         return false
@@ -50,7 +54,7 @@
                 for (let idx=apps.length-1;idx>=0;idx-=1){
                     if (containWordInList(apps[idx].parentElement.innerHTML)){
                         let rmele = apps[idx].parentElement
-                        if (rmele.className=='focus') {
+                        if (rmele.className==='focus') {
                             focus=false
                         }
                         rmele.remove()
