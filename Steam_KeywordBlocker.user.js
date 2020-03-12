@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.3.11.0
+// @version      2020.3.12.0
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -40,7 +40,7 @@
     }
 
     function addKeyword(kw) {
-        BLACKLIST.push(eval(kw))
+        BLACKLIST.push(kw)
         saveBlacklist()
     }
 
@@ -150,7 +150,7 @@
     let menus = $J('#global_action_menu')[0]
     menus.innerHTML = ''
         +'<div id="skp_menu" style="display: inline-block;">'
-        +'    <div id="skp_pulldown" style="display: inline-block;vertical-align: middle;" class="pulldown global_action_link">Steam_KeywordBlocker</div>'
+        +'    <div id="skp_pulldown" style="display: inline-block;vertical-align: middle;" class="pulldown global_action_link">KeywordBlocker</div>'
         +'    <div id="skp_kwlst" style="visibility: hidden; background-color: #171a21;" class="popup_block_new">'
         +'        <div style="text-align: center;">关键词列表</div>'
         +'        <div id="skp_kws"></div>'
@@ -188,11 +188,11 @@
         let input = $J('#skp_newkw')[0]
         if (input.value.length > 0){
             try {
-                addKeyword(input.value)
-                input.value = ''
+                addKeyword(eval(input.value))
             } catch(e) {
-                alert(e)
+                addKeyword(input.value)
             }
+            input.value = ''
         }
         makeKeywordList()
     })
