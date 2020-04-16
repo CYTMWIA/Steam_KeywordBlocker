@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.3.12.0
+// @version      2020.4.16.0
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -85,7 +85,7 @@
         setIntervalKiller(()=>{
             let apps = document.getElementsByClassName('community_recommendation_app')
             if (apps.length>0){
-                let thumbs = document.getElementsByClassName('carousel_thumbs')[3]
+                let thumbs = $J('.community_recommendations_by_steam_labs_ctn .carousel_thumbs')[0]
                 let focus = true
                 for (let idx=apps.length-1;idx>=0;idx-=1){
                     if (containWordInList(apps[idx].parentElement.innerHTML)){
