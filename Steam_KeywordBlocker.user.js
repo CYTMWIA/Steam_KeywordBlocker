@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.4.16.0
+// @version      2020.4.23.0
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -98,7 +98,7 @@
                     }
                 }
                 if (!focus&&apps.length>0) {
-                    document.getElementsByClassName('arrow right')[3].click()
+                    $J('.community_recommendations_by_steam_labs_ctn .arrow').click()
                 }
                 return true
             }
