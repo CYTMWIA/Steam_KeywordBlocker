@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.8.8
+// @version      2020.8.8.1
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -27,7 +27,7 @@
             if (val instanceof RegExp)
                 lst += val.toString()
             else
-                lst += '"'+val.toString()+'"'
+                lst += '"' + val.toString().replaceAll('"','\\"') + '"'
             lst += ','
         })
         lst += ']'
