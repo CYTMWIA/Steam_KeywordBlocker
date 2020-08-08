@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.4.23.0
+// @version      2020.8.8
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -131,9 +131,9 @@
     GM_addStyle(''
         +'.skp_kwrow {'
         +'  display: grid;'
-        +'  grid-template-columns: 1fr 1fr;'
-        +'  grid-gap: 1ch;'
+        +'  grid-template-columns: 1fr 0.25fr;'
         +'  background-color: black;'
+        +'  margin: 0.5ch;'
         +'}'
         +'.skp_kwtext {'
         +'  grid-column: 1;'
@@ -144,6 +144,8 @@
         +'  text-align: center;'
         +'  cursor: pointer;'
         +'  font-size: large;'
+        +'  background: steelblue;'
+        +'  color: white;'
         +'}'
     )
 
