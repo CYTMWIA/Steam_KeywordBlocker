@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam_KeywordBlocker
-// @version      2020.8.8.1
+// @version      2020.8.12
 // @description  关键词屏蔽
 // @author       CYTMWIA
 // @match        http*://store.steampowered.com/*
@@ -13,6 +13,10 @@
 
 (function() {
     'use strict';
+
+    function replaceAll(str, origin, replacement) {
+        return str.split(origin).join(replacement)
+    }
 
     //屏蔽关键词 keyword
     let BLACKLIST = []
@@ -27,7 +31,7 @@
             if (val instanceof RegExp)
                 lst += val.toString()
             else
-                lst += '"' + val.toString().replaceAll('"','\\"') + '"'
+                lst += '"' + replaceAll(val.toString(), '"', '\\"') + '"'
             lst += ','
         })
         lst += ']'
