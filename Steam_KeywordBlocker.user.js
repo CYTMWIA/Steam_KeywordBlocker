@@ -22,6 +22,7 @@
     let BLACKLIST = []
 
     function initBlacklist() {
+        // Why string? 如果使用array内含object的方案的话, GM_setValue之后GM_getValue会导致regexp对象的toString()无法正常运行, 即返回值为"[object]" 
         BLACKLIST = eval(GM_getValue('BLACKLIST', '["PUBG社区管理",/绝地求生.*?限时领取/,"FREE SKINS",/懂.*?懂.*?身体.*?删.*?除/]'))
     }
 
